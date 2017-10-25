@@ -14,6 +14,7 @@
 		B58FF2B51FA0BF2D0052E01B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58FF2B31FA0BF2D0052E01B /* LaunchScreen.storyboard */; };
 		B58FF2BD1FA0C1A90052E01B /* Citation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2BC1FA0C1A90052E01B /* Citation.swift */; };
 		B58FF2BF1FA0E0060052E01B /* YahooFinance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */; };
+		B58FF2C31FA122BE0052E01B /* CelluleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2C21FA122BE0052E01B /* CelluleAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B58FF2B61FA0BF2D0052E01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B58FF2BC1FA0C1A90052E01B /* Citation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Citation.swift; sourceTree = "<group>"; };
 		B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahooFinance.swift; sourceTree = "<group>"; };
+		B58FF2C21FA122BE0052E01B /* CelluleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelluleAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		B58FF2A91FA0BF2D0052E01B /* testerCodable */ = {
 			isa = PBXGroup;
 			children = (
+				B58FF2C01FA122880052E01B /* Ressources */,
 				B58FF2AA1FA0BF2D0052E01B /* AppDelegate.swift */,
 				B58FF2AC1FA0BF2D0052E01B /* ViewController.swift */,
 				B58FF2AE1FA0BF2D0052E01B /* Main.storyboard */,
@@ -68,6 +71,22 @@
 				B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */,
 			);
 			path = testerCodable;
+			sourceTree = "<group>";
+		};
+		B58FF2C01FA122880052E01B /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				B58FF2C11FA122920052E01B /* Classes */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		B58FF2C11FA122920052E01B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B58FF2C21FA122BE0052E01B /* CelluleAction.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,6 +164,7 @@
 				B58FF2BD1FA0C1A90052E01B /* Citation.swift in Sources */,
 				B58FF2BF1FA0E0060052E01B /* YahooFinance.swift in Sources */,
 				B58FF2AD1FA0BF2D0052E01B /* ViewController.swift in Sources */,
+				B58FF2C31FA122BE0052E01B /* CelluleAction.swift in Sources */,
 				B58FF2AB1FA0BF2D0052E01B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -33,15 +33,17 @@ import UIKit
 
 // Définition de la classe
 // ===========================================================
-class ViewController: UIViewController {
-    let pi:Double = 3.141592
+class ViewController: UIViewController, UITableViewDataSource {
+
+    // Cette propriété va contenir les données reçues de Yahoo
+    var donnéesYahooFinance:YahooFinance!
     
     // Surcharge de certaines méthodes utiles de la super classe
     // =======================================================
     override func viewDidLoad() {
         super.viewDidLoad()
-        obtenirLaCitationDuJour()
-        // obtenirDonnéesDeMesActions()
+        // obtenirLaCitationDuJour()
+        obtenirDonnéesDeMesActions()
     } // viewDidLoad()
 
     // =======================================================
@@ -113,16 +115,48 @@ extension ViewController {
         
         if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
             // Note: YahooFinance veut dire "de type YahooFinance"
-            let données = try! JSONDecoder().decode(YahooFinance.self, from: _data)
-            print(données)
+             donnéesYahooFinance = try! JSONDecoder().decode(YahooFinance.self, from: _data)
+            print(donnéesYahooFinance)
             
-            for contenu in données.query.results.quote {
-                let prix = contenu.Ask ?? "Prix non disponible"
-                print ("\(contenu.Symbol): \(prix)")
+            for contenu in donnéesYahooFinance.query.results.quote {
+                let symbole = contenu.Name   ?? "n/a"
+                let nom     = contenu.Symbol ?? "n/a"
+                let prix    = contenu.Ask    ?? "n/a"
+                
+                print ("\(symbole):\(nom) vaut \(prix)$")
             }
         } // if let
         
     } // obtenirDonnéesJSON
+    
+    //MARK:- Les méthodes du protocole UITableViewDataSource
+    // =======================================================
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return donnéesYahooFinance.query.results.quote.count
+    } // numberOfRowsInSection
+    
+    
+    // =======================================================
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellule = tableView.dequeueReusableCell(withIdentifier: "modele", for: indexPath) as! CelluleAction
+        let indice = indexPath.row
+
+        // Changer la couleur de fond des cellules paires.
+        if indice % 2 == 0 {cellule.backgroundColor = UIColor(named: "vertFonce")}
+
+        // Obtenir l'action courante à partir du tableau des actions
+        let actionCourante = donnéesYahooFinance.query.results.quote[indice]
+        
+        // Renseigner les champs requis
+        let nom      = actionCourante.Name   ?? "n/a"
+        let symbole  = actionCourante.Symbol ?? "n/a"
+        let prix     = actionCourante.Ask    ?? "n/a"
+        cellule.actionCode.text = "\(symbole)"
+        cellule.actionTitre.text = "\(nom)"
+        cellule.actionValeur.text = "\(prix) $"
+
+        return cellule
+    } // cellForRowAt indexPath
     
 }  // extension ViewController
 
