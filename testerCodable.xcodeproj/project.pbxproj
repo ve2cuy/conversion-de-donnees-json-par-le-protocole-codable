@@ -12,6 +12,8 @@
 		B58FF2B01FA0BF2D0052E01B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58FF2AE1FA0BF2D0052E01B /* Main.storyboard */; };
 		B58FF2B21FA0BF2D0052E01B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B58FF2B11FA0BF2D0052E01B /* Assets.xcassets */; };
 		B58FF2B51FA0BF2D0052E01B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58FF2B31FA0BF2D0052E01B /* LaunchScreen.storyboard */; };
+		B58FF2BD1FA0C1A90052E01B /* Citation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2BC1FA0C1A90052E01B /* Citation.swift */; };
+		B58FF2BF1FA0E0060052E01B /* YahooFinance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		B58FF2B11FA0BF2D0052E01B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B58FF2B41FA0BF2D0052E01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B58FF2B61FA0BF2D0052E01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B58FF2BC1FA0C1A90052E01B /* Citation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Citation.swift; sourceTree = "<group>"; };
+		B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahooFinance.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				B58FF2B11FA0BF2D0052E01B /* Assets.xcassets */,
 				B58FF2B31FA0BF2D0052E01B /* LaunchScreen.storyboard */,
 				B58FF2B61FA0BF2D0052E01B /* Info.plist */,
+				B58FF2BC1FA0C1A90052E01B /* Citation.swift */,
+				B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */,
 			);
 			path = testerCodable;
 			sourceTree = "<group>";
@@ -136,6 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B58FF2BD1FA0C1A90052E01B /* Citation.swift in Sources */,
+				B58FF2BF1FA0E0060052E01B /* YahooFinance.swift in Sources */,
 				B58FF2AD1FA0BF2D0052E01B /* ViewController.swift in Sources */,
 				B58FF2AB1FA0BF2D0052E01B /* AppDelegate.swift in Sources */,
 			);
