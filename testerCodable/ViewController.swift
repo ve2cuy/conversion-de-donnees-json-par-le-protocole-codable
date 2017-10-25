@@ -35,15 +35,27 @@ import UIKit
 // ===========================================================
 class ViewController: UIViewController, UITableViewDataSource {
 
+    // Les connexions @IB
+    @IBOutlet weak var tableViewDesActions: UITableView!
+    
+    @IBOutlet weak var uiNbLecturesSurApiYahoo: UILabel!
+    
     // Cette propriété va contenir les données reçues de Yahoo
     var donnéesYahooFinance:YahooFinance!
     
+    var nbLecturesSurApiYahoo = 0
+
     // Surcharge de certaines méthodes utiles de la super classe
     // =======================================================
     override func viewDidLoad() {
         super.viewDidLoad()
         // obtenirLaCitationDuJour()
         obtenirDonnéesDeMesActions()
+        Timer.scheduledTimer(timeInterval: 2,
+                            target: self,
+                            selector: #selector(self.obtenirDonnéesDeMesActions),
+                            userInfo: nil,
+                            repeats: true)
     } // viewDidLoad()
 
     // =======================================================
@@ -90,7 +102,7 @@ extension ViewController {
     } // obtenirLaCitationDuJour()
     
     // =======================================================
-    func obtenirDonnéesDeMesActions(){
+    @objc func obtenirDonnéesDeMesActions(){
         // Exemple d'utilisation de l'API finance Yahoo:
         // http://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quotes where symbol in ('MSFT','YHOO','FB','INTC','HPQ','AAPL','AMD','COKE')&env=store://datatables.org/alltableswithkeys&format=json
         
@@ -115,8 +127,13 @@ extension ViewController {
         
         if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
             // Note: YahooFinance veut dire "de type YahooFinance"
-             donnéesYahooFinance = try! JSONDecoder().decode(YahooFinance.self, from: _data)
+            donnéesYahooFinance = try! JSONDecoder().decode(YahooFinance.self, from: _data)
             print(donnéesYahooFinance)
+            //Réactualiser les données de tableViewDesActions
+            tableViewDesActions.reloadData()
+            //M-A-J du nombre de lectures vers l'API de Yahoo
+            nbLecturesSurApiYahoo += 1
+            uiNbLecturesSurApiYahoo?.text = String(nbLecturesSurApiYahoo)
             
             for contenu in donnéesYahooFinance.query.results.quote {
                 let symbole = contenu.Name   ?? "n/a"
