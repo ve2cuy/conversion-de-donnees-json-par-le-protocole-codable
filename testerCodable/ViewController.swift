@@ -104,7 +104,7 @@ extension ViewController {
         // Former le début de l'URL
         let uneURL = "http://query.yahooapis.com/v1/public/yql?q="
             // Ajouter la requête SQL et remplacer les ' ' par %20
-            + "select * from yahoo.finance.quotes where symbol in ('MSFT','YHOO','FB','INTC','HPQ','AAPL','AMD','COKE')".addingPercentEncoding(withAllowedCharacters: caracteresAConvertirEnFormatWeb)!
+            + "select * from yahoo.finance.quotes where symbol in ('MSFT','YHOO','FB','INTC','HPQ','AAPL','AMD','COKE', 'MOMO', 'EGOV', 'PTOP', 'SINA', 'TWTR', 'YNDX', 'NTES', 'GDDY')".addingPercentEncoding(withAllowedCharacters: caracteresAConvertirEnFormatWeb)!
             // Ajouter la fin de l'URL
             + "&env=store://datatables.org/alltableswithkeys&format=json"
      
@@ -141,9 +141,10 @@ extension ViewController {
         let cellule = tableView.dequeueReusableCell(withIdentifier: "modele", for: indexPath) as! CelluleAction
         let indice = indexPath.row
 
-        // Changer la couleur de fond des cellules paires.
-        if indice % 2 == 0 {cellule.backgroundColor = UIColor(named: "vertFonce")}
-
+        // Renseigner la couleur de fond des cellules.
+        let couleurDeFond =  indice % 2 == 0 ? UIColor(named: "vertFonce") : UIColor(named: "bleuFonce")
+        cellule.backgroundColor = couleurDeFond
+        
         // Obtenir l'action courante à partir du tableau des actions
         let actionCourante = donnéesYahooFinance.query.results.quote[indice]
         
