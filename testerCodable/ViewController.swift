@@ -34,14 +34,13 @@ import UIKit
 // Définition de la classe
 // ===========================================================
 class ViewController: UIViewController {
-    let pi:Double = 3.141592
     
     // Surcharge de certaines méthodes utiles de la super classe
     // =======================================================
     override func viewDidLoad() {
         super.viewDidLoad()
-        obtenirLaCitationDuJour()
-        // obtenirDonnéesDeMesActions()
+        //obtenirLaCitationDuJour()
+        obtenirDonnéesDeMesActions()
     } // viewDidLoad()
 
     // =======================================================
@@ -122,7 +121,7 @@ extension ViewController {
             }
         } // if let
         
-    } // obtenirDonnéesJSON
+    } // obtenirDonnéesDeMesActions
     
 }  // extension ViewController
 
