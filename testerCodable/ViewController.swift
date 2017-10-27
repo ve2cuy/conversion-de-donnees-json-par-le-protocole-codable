@@ -35,6 +35,8 @@ import UIKit
 // ===========================================================
 class ViewController: UIViewController {
     
+    var donnéesFinanceYahoo: YahooFinance!
+    
     // Surcharge de certaines méthodes utiles de la super classe
     // =======================================================
     override func viewDidLoad() {
@@ -112,16 +114,24 @@ extension ViewController {
         
         if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
             // Note: YahooFinance veut dire "de type YahooFinance"
-            let données = try! JSONDecoder().decode(YahooFinance.self, from: _data)
-            print(données)
+            donnéesFinanceYahoo = try! JSONDecoder().decode(YahooFinance.self, from: _data)
+            print(donnéesFinanceYahoo)
             
-            for contenu in données.query.results.quote {
+            for contenu in donnéesFinanceYahoo.query.results.quote {
                 let prix = contenu.Ask ?? "Prix non disponible"
                 print ("\(contenu.Symbol): \(prix)")
             }
         } // if let
         
     } // obtenirDonnéesDeMesActions
+    
+    func afficherDonnéesFinanceYahoo(){
+        for contenu in donnéesFinanceYahoo.query.results.quote {
+            let prix = contenu.Ask ?? "Prix non disponible"
+            print ("\(contenu.Symbol): \(prix)")
+        }
+    } // afficherDonnéesFinanceYahoo
+
     
 }  // extension ViewController
 
