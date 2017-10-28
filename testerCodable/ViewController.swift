@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     var donnéesFinanceYahoo: YahooFinance?
     
     // Surcharge de certaines méthodes utiles de la super classe
-    // =======================================================
+    // =========================================================
     override func viewDidLoad() {
         super.viewDidLoad()
         
