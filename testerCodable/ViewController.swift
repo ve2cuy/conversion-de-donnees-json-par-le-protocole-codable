@@ -35,7 +35,7 @@ import UIKit
 // ===========================================================
 class ViewController: UIViewController {
     
-    var donnéesFinanceYahoo: YahooFinance!
+    var donnéesFinanceYahoo: YahooFinance?
     
     // Surcharge de certaines méthodes utiles de la super classe
     // =======================================================
@@ -43,6 +43,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         //obtenirLaCitationDuJour()
         obtenirDonnéesDeMesActions()
+        afficherDonnéesFinanceYahoo()
     } // viewDidLoad()
 
     // =======================================================
@@ -112,24 +113,30 @@ extension ViewController {
          print(uneURL)
         #endif
         
-        if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
-            // Note: YahooFinance veut dire "de type YahooFinance"
-            donnéesFinanceYahoo = try! JSONDecoder().decode(YahooFinance.self, from: _data)
-            print(donnéesFinanceYahoo)
-            
-            for contenu in donnéesFinanceYahoo.query.results.quote {
-                let prix = contenu.Ask ?? "Prix non disponible"
-                print ("\(contenu.Symbol): \(prix)")
-            }
-        } // if let
+        DispatchQueue.main.async ( execute: {
+            if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
+                // Note: YahooFinance.self veut dire "de type YahooFinance"
+                self.donnéesFinanceYahoo = try! JSONDecoder().decode(YahooFinance.self, from: _data)
+            } // if let
+        }) // DispatchQueue()
         
     } // obtenirDonnéesDeMesActions
     
+    
+    // =======================================================
     func afficherDonnéesFinanceYahoo(){
-        for contenu in donnéesFinanceYahoo.query.results.quote {
-            let prix = contenu.Ask ?? "Prix non disponible"
-            print ("\(contenu.Symbol): \(prix)")
+        print("\n============================================")
+        print("Voici les données du portefeuille d'actions:")
+        print("Début ------------------------------------->")
+        
+        if let _données = donnéesFinanceYahoo {
+            for contenu in _données.query.results.quote  {
+                let prix = contenu.Ask ?? "Prix non disponible"
+                print ("\t\(contenu.Symbol): \(prix)")
+            }
         }
+        print("Fin <---------------------------------------\n")
+        
     } // afficherDonnéesFinanceYahoo
 
     
