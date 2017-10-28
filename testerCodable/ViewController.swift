@@ -35,15 +35,20 @@ import UIKit
 // ===========================================================
 class ViewController: UIViewController {
     
+    var nbLectures = 0
     var donnéesFinanceYahoo: YahooFinance?
     
     // Surcharge de certaines méthodes utiles de la super classe
     // =======================================================
     override func viewDidLoad() {
         super.viewDidLoad()
-        //obtenirLaCitationDuJour()
+        
+        // TODO: Placer en commentaire à l'étape du 'timer'
         obtenirDonnéesDeMesActions()
         afficherDonnéesFinanceYahoo()
+        
+        // TODO: Enlever le commentaire à l'étape du 'timer'
+        // Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.obtenirDonnéesDeMesActions), userInfo: nil, repeats: true)
     } // viewDidLoad()
 
     // =======================================================
@@ -73,24 +78,9 @@ extension ViewController {
     //MARK:- Obtenir les données
     
     // =======================================================
-    func obtenirLaCitationDuJour(){
-       let uneURL = "http://prof-tim.cstj.qc.ca/cours/xcode/sources/apitim.php?mode=rnd&quant=5&format=json"
-        if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
-            // Note: Class.self veut dire "de type Class"
-            let données = try! JSONDecoder().decode(Citation.self, from: _data)
-            print(données)
-            
-            for contenu in données.resultat {
-                // Note: ?? est le 'nil-coalescing operator'
-                let auteur = contenu.pensee_auteur ?? "Erreur: Nom de l'auteur non disponible"
-                let pensée = contenu.pensee_texte  ?? "Erreur: Pensée de l'auteur non disponible"
-                print ("\(auteur) a dit:\n\t \(pensée)\n\n")
-            }
-        } // if let
-    } // obtenirLaCitationDuJour()
-    
-    // =======================================================
-    func obtenirDonnéesDeMesActions(){
+    // Note: Depuis swift 4, une méthode exécutée via un
+    //       'selector' doit-être déclarée avec @objc.
+    @objc func obtenirDonnéesDeMesActions(){
         // Exemple d'utilisation de l'API finance Yahoo:
         // http://query.yahooapis.com/v1/public/yql?q=select * from yahoo.finance.quotes where symbol in ('MSFT','YHOO','FB','INTC','HPQ','AAPL','AMD','COKE')&env=store://datatables.org/alltableswithkeys&format=json
         
@@ -113,12 +103,19 @@ extension ViewController {
          print(uneURL)
         #endif
         
-        DispatchQueue.main.async ( execute: {
+        // TODO: Retirer le commentaire suivant
+        // DispatchQueue.main.async ( execute: {
+            // Obtenir les données via le Web
             if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
                 // Note: YahooFinance.self veut dire "de type YahooFinance"
                 self.donnéesFinanceYahoo = try! JSONDecoder().decode(YahooFinance.self, from: _data)
+                // TODO: Enlever les commentaires à l'étape du 'timer'
+                // self.nbLectures += 1
+                // print("\n\n\(NSDate()) - Lecture numéro \(self.nbLectures)")
+                // self.afficherDonnéesFinanceYahoo()
             } // if let
-        }) // DispatchQueue()
+        // TODO: Retirer le commentaire suivant
+        // }) // DispatchQueue()
         
     } // obtenirDonnéesDeMesActions
     
@@ -139,6 +136,11 @@ extension ViewController {
         
     } // afficherDonnéesFinanceYahoo
 
+    
+    // =======================================================
+    func boucleDeTemps() {
+        
+    } // boucleDeTemps()
     
 }  // extension ViewController
 
