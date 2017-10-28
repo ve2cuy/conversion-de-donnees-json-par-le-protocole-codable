@@ -51,8 +51,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     // =======================================================
     override func viewDidLoad() {
         super.viewDidLoad()
-        // obtenirLaCitationDuJour()
-        // obtenirDonnéesDeMesActions()
+        obtenirDonnéesDeMesActions()
         Timer.scheduledTimer(timeInterval: 5,
                             target: self,
                             selector: #selector(self.obtenirDonnéesDeMesActions),
