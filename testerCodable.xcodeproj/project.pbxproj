@@ -15,6 +15,7 @@
 		B58FF2BD1FA0C1A90052E01B /* Citation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2BC1FA0C1A90052E01B /* Citation.swift */; };
 		B58FF2BF1FA0E0060052E01B /* YahooFinance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */; };
 		B58FF2C31FA122BE0052E01B /* CelluleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2C21FA122BE0052E01B /* CelluleAction.swift */; };
+		B59E52231FA4F15C002C3812 /* portefeuille.json in Resources */ = {isa = PBXBuildFile; fileRef = B59E52221FA4F15C002C3812 /* portefeuille.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		B58FF2BC1FA0C1A90052E01B /* Citation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Citation.swift; sourceTree = "<group>"; };
 		B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahooFinance.swift; sourceTree = "<group>"; };
 		B58FF2C21FA122BE0052E01B /* CelluleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelluleAction.swift; sourceTree = "<group>"; };
+		B59E52221FA4F15C002C3812 /* portefeuille.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = portefeuille.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		B58FF2C01FA122880052E01B /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				B59E52211FA4F111002C3812 /* Données */,
 				B58FF2C11FA122920052E01B /* Classes */,
 			);
 			path = Ressources;
@@ -87,6 +90,15 @@
 				B58FF2C21FA122BE0052E01B /* CelluleAction.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		B59E52211FA4F111002C3812 /* Données */ = {
+			isa = PBXGroup;
+			children = (
+				B59E52221FA4F15C002C3812 /* portefeuille.json */,
+			);
+			name = "Données";
+			path = "Données";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B58FF2B51FA0BF2D0052E01B /* LaunchScreen.storyboard in Resources */,
+				B59E52231FA4F15C002C3812 /* portefeuille.json in Resources */,
 				B58FF2B21FA0BF2D0052E01B /* Assets.xcassets in Resources */,
 				B58FF2B01FA0BF2D0052E01B /* Main.storyboard in Resources */,
 			);

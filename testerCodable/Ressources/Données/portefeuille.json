@@ -1,0 +1,8 @@
+{
+    "actions" : [
+                 { "symbole" : "MSFT", "quant" : 5 },
+                 { "symbole" : "FB", "quant" : 10 },
+                 { "symbole" : "AAPL", "quant" : 25 },
+                 { "symbole" : "AMD", "quant" : 50 }
+    ]
+}

@@ -13,6 +13,8 @@
 //          NSData(contentsOf: URL(string: uneURL)!))
 //          JSONDecoder().decode()
 //          L'opérateur ??
+//          Timer.scheduledTimer
+//          DispatchQueue.main.async
 //
 //  ================================================================
 //  Note:  Il faut ajouter la clé suivante au fichier info.plist
@@ -41,7 +43,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var uiNbLecturesSurApiYahoo: UILabel!
     
     // Cette propriété va contenir les données reçues de Yahoo
-    var donnéesYahooFinance:YahooFinance!
+    var donnéesFinanceYahoo:YahooFinance?
     
     var nbLecturesSurApiYahoo = 0
 
@@ -50,8 +52,8 @@ class ViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         // obtenirLaCitationDuJour()
-        obtenirDonnéesDeMesActions()
-        Timer.scheduledTimer(timeInterval: 2,
+        // obtenirDonnéesDeMesActions()
+        Timer.scheduledTimer(timeInterval: 5,
                             target: self,
                             selector: #selector(self.obtenirDonnéesDeMesActions),
                             userInfo: nil,
@@ -67,40 +69,10 @@ class ViewController: UIViewController, UITableViewDataSource {
 } // class ViewController
 // ===========================================================
 
-// ===========================================================
-// MARK:- Les extensions de la classe ViewController
-// Note: Pas de propiétés de stockage dans les extensions.
-//       Par exemple, ceci n'est pas possible;
-//
-//       let pi2 = 3.141592 * 2
-//
-//       Par contre, il est possible d'utiliser
-//       des propriétés calculées;
-//
-//       var pi2: Double {return pi * 2}
-
 
 extension ViewController {
     
     //MARK:- Obtenir les données
-    
-    // =======================================================
-    func obtenirLaCitationDuJour(){
-       let uneURL = "http://prof-tim.cstj.qc.ca/cours/xcode/sources/apitim.php?mode=rnd&quant=5&format=json"
-        if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
-            // Note: Class.self veut dire "de type Class"
-            let données = try! JSONDecoder().decode(Citation.self, from: _data)
-            print(données)
-            
-            for contenu in données.resultat {
-                // Note: ?? est le 'nil-coalescing operator'
-                let auteur = contenu.pensee_auteur ?? "Erreur: Nom de l'auteur non disponible"
-                let pensée = contenu.pensee_texte  ?? "Erreur: Pensée de l'auteur non disponible"
-                print ("\(auteur) a dit:\n\t \(pensée)\n\n")
-            }
-        } // if let
-    } // obtenirLaCitationDuJour()
-    
     // =======================================================
     @objc func obtenirDonnéesDeMesActions(){
         // Exemple d'utilisation de l'API finance Yahoo:
@@ -111,7 +83,7 @@ extension ViewController {
         // http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quotes%20where%20symbol%20in%20('MSFT','YHOO','FB','INTC','HPQ','AAPL','AMD','COKE')&env=store://datatables.org/alltableswithkeys&format=json
         
         // Construire l'URL vers l'API finance de Yahoo et remplacer les caractères invalides.
-        // Liste des car à convertir
+        // Liste des caractères à convertir
         let caracteresAConvertirEnFormatWeb = CharacterSet(charactersIn: " ").inverted
         // Former le début de l'URL
         let uneURL = "http://query.yahooapis.com/v1/public/yql?q="
@@ -125,45 +97,69 @@ extension ViewController {
          print(uneURL)
         #endif
         
-        if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
-            // Note: YahooFinance veut dire "de type YahooFinance"
-            donnéesYahooFinance = try! JSONDecoder().decode(YahooFinance.self, from: _data)
-            print(donnéesYahooFinance)
-            //Réactualiser les données de tableViewDesActions
-            tableViewDesActions.reloadData()
-            //M-A-J du nombre de lectures vers l'API de Yahoo
-            nbLecturesSurApiYahoo += 1
-            uiNbLecturesSurApiYahoo?.text = String(nbLecturesSurApiYahoo)
-            
-            for contenu in donnéesYahooFinance.query.results.quote {
-                let symbole = contenu.Name   ?? "n/a"
-                let nom     = contenu.Symbol ?? "n/a"
-                let prix    = contenu.Ask    ?? "n/a"
-                
-                print ("\(symbole):\(nom) vaut \(prix)$")
-            }
-        } // if let
-        
+        // Détacher l'opération d'interrogation de l'API finance
+        DispatchQueue.main.async ( execute: {
+            // Obtenir les données via le Web
+            if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
+                // Note: YahooFinance.self veut dire "de type YahooFinance"
+                self.donnéesFinanceYahoo = try! JSONDecoder().decode(YahooFinance.self, from: _data)
+
+                //M-A-J du nombre de lectures vers l'API de Yahoo
+                self.nbLecturesSurApiYahoo += 1
+                self.uiNbLecturesSurApiYahoo?.text = String(self.nbLecturesSurApiYahoo)
+                print("\n\n\(NSDate()) - Lecture numéro \(self.nbLecturesSurApiYahoo)")
+                #if DEBUG
+                     self.afficherDonnéesFinanceYahoo()
+                #endif
+                //Réactualiser les données de tableViewDesActions
+                self.tableViewDesActions.reloadData()
+            } // if let
+        }) // DispatchQueue()
     } // obtenirDonnéesJSON
+    
+    // =======================================================
+    func afficherDonnéesFinanceYahoo(){
+        print("\n============================================")
+        print("Voici les données du portefeuille d'actions:")
+        print("Début ------------------------------------->")
+        
+        if let _données = donnéesFinanceYahoo {
+            for contenu in _données.query.results.quote  {
+                let prix = contenu.Ask ?? "Prix non disponible"
+                let symbole = contenu.Symbol ?? "n/a"
+                print ("\t\(symbole): \(prix)")
+            }
+        }
+        print("Fin <---------------------------------------\n")
+        
+    } // afficherDonnéesFinanceYahoo
     
     //MARK:- Les méthodes du protocole UITableViewDataSource
     // =======================================================
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return donnéesYahooFinance.query.results.quote.count
+        
+        // si données = nil alors retourner 0
+        guard donnéesFinanceYahoo != nil else { return 0 }
+        
+        return (donnéesFinanceYahoo?.query.results.quote.count)!
+
     } // numberOfRowsInSection
     
     
     // =======================================================
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cellule = tableView.dequeueReusableCell(withIdentifier: "modele", for: indexPath) as! CelluleAction
+
         let indice = indexPath.row
+
+        // Obtenir l'action courante à partir du tableau des actions
+        // en s'assurant que le tableau n'est pas 'nil' - précaution pour le dispatch
+        if let actionCourante = donnéesFinanceYahoo?.query.results.quote[indice] {
 
         // Renseigner la couleur de fond des cellules.
         let couleurDeFond =  indice % 2 == 0 ? UIColor(named: "vertFonce") : UIColor(named: "bleuFonce")
         cellule.backgroundColor = couleurDeFond
-        
-        // Obtenir l'action courante à partir du tableau des actions
-        let actionCourante = donnéesYahooFinance.query.results.quote[indice]
         
         // Renseigner les champs requis
         let nom      = actionCourante.Name   ?? "n/a"
@@ -172,8 +168,10 @@ extension ViewController {
         cellule.actionCode.text = "\(symbole)"
         cellule.actionTitre.text = "\(nom)"
         cellule.actionValeur.text = "\(prix) $"
-
+        } // if let
+        
         return cellule
+
     } // cellForRowAt indexPath
     
 }  // extension ViewController
