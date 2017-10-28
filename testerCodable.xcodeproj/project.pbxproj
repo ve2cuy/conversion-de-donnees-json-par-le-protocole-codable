@@ -69,8 +69,6 @@
 				B58FF2B11FA0BF2D0052E01B /* Assets.xcassets */,
 				B58FF2B31FA0BF2D0052E01B /* LaunchScreen.storyboard */,
 				B58FF2B61FA0BF2D0052E01B /* Info.plist */,
-				B58FF2BC1FA0C1A90052E01B /* Citation.swift */,
-				B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */,
 			);
 			path = testerCodable;
 			sourceTree = "<group>";
@@ -87,6 +85,8 @@
 		B58FF2C11FA122920052E01B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B58FF2BC1FA0C1A90052E01B /* Citation.swift */,
+				B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */,
 				B58FF2C21FA122BE0052E01B /* CelluleAction.swift */,
 			);
 			path = Classes;
