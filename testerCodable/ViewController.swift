@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // TODO: Placer en commentaire à l'étape du 'timer'
-        // obtenirDonnéesDeMesActions()
+        obtenirDonnéesDeMesActions()
         // afficherDonnéesFinanceYahoo()
         
         // TODO: Action 6.9 - Enlever le commentaire à l'étape du 'timer'
