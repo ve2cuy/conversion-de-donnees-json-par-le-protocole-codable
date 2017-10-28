@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         obtenirDonnéesDeMesActions()
         afficherDonnéesFinanceYahoo()
         
-        // TODO: Enlever le commentaire à l'étape du 'timer'
+        // TODO: Action 6.9 - Enlever le commentaire à l'étape du 'timer'
         // Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.obtenirDonnéesDeMesActions), userInfo: nil, repeats: true)
     } // viewDidLoad()
 
@@ -103,18 +103,20 @@ extension ViewController {
          print(uneURL)
         #endif
         
-        // TODO: Retirer le commentaire suivant
+        // TODO: Action 6.4 - Retirer le commentaire suivant
         // DispatchQueue.main.async ( execute: {
             // Obtenir les données via le Web
             if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
                 // Note: YahooFinance.self veut dire "de type YahooFinance"
                 self.donnéesFinanceYahoo = try! JSONDecoder().decode(YahooFinance.self, from: _data)
-                // TODO: Enlever les commentaires à l'étape du 'timer'
+                // TODO: Action 6.9 - Enlever les commentaires à l'étape du 'timer'
                 // self.nbLectures += 1
                 // print("\n\n\(NSDate()) - Lecture numéro \(self.nbLectures)")
+                
+                // TODO: Action 6.6 - Retirer le commentaire suivant
                 // self.afficherDonnéesFinanceYahoo()
             } // if let
-        // TODO: Retirer le commentaire suivant
+        // TODO: Action 6.4 - Retirer le commentaire suivant
         // }) // DispatchQueue()
         
     } // obtenirDonnéesDeMesActions
