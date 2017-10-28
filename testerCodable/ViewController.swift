@@ -44,11 +44,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // TODO: Placer en commentaire à l'étape du 'timer'
-        obtenirDonnéesDeMesActions()
-        afficherDonnéesFinanceYahoo()
+        // obtenirDonnéesDeMesActions()
+        // afficherDonnéesFinanceYahoo()
         
         // TODO: Action 6.9 - Enlever le commentaire à l'étape du 'timer'
-        // Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.obtenirDonnéesDeMesActions), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.obtenirDonnéesDeMesActions), userInfo: nil, repeats: true)
     } // viewDidLoad()
 
     // =======================================================
@@ -104,20 +104,20 @@ extension ViewController {
         #endif
         
         // TODO: Action 6.4 - Retirer le commentaire suivant
-        // DispatchQueue.main.async ( execute: {
+        DispatchQueue.main.async ( execute: {
             // Obtenir les données via le Web
             if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
                 // Note: YahooFinance.self veut dire "de type YahooFinance"
                 self.donnéesFinanceYahoo = try! JSONDecoder().decode(YahooFinance.self, from: _data)
                 // TODO: Action 6.9 - Enlever les commentaires à l'étape du 'timer'
-                // self.nbLectures += 1
-                // print("\n\n\(NSDate()) - Lecture numéro \(self.nbLectures)")
+                self.nbLectures += 1
+                print("\n\n\(NSDate()) - Lecture numéro \(self.nbLectures)")
                 
                 // TODO: Action 6.6 - Retirer le commentaire suivant
-                // self.afficherDonnéesFinanceYahoo()
+                self.afficherDonnéesFinanceYahoo()
             } // if let
         // TODO: Action 6.4 - Retirer le commentaire suivant
-        // }) // DispatchQueue()
+        }) // DispatchQueue()
         
     } // obtenirDonnéesDeMesActions
     
