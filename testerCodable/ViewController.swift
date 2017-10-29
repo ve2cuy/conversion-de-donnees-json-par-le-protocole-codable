@@ -39,8 +39,8 @@ class ViewController: UIViewController {
     // =======================================================
     override func viewDidLoad() {
         super.viewDidLoad()
-        //obtenirLaCitationDuJour()
-        obtenirDonnéesDeMesActions()
+        obtenirLaCitationDuJour()
+        //obtenirDonnéesDeMesActions()
     } // viewDidLoad()
 
     // =======================================================
