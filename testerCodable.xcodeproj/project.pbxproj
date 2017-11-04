@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B56037211FAE379B0049E847 /* apiTIMFinance.php in Resources */ = {isa = PBXBuildFile; fileRef = B56037201FAE379B0049E847 /* apiTIMFinance.php */; };
 		B58FF2AB1FA0BF2D0052E01B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2AA1FA0BF2D0052E01B /* AppDelegate.swift */; };
 		B58FF2AD1FA0BF2D0052E01B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2AC1FA0BF2D0052E01B /* ViewController.swift */; };
 		B58FF2B01FA0BF2D0052E01B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58FF2AE1FA0BF2D0052E01B /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B56037201FAE379B0049E847 /* apiTIMFinance.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = apiTIMFinance.php; sourceTree = "<group>"; };
 		B58FF2A71FA0BF2D0052E01B /* testerCodable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testerCodable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58FF2AA1FA0BF2D0052E01B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B58FF2AC1FA0BF2D0052E01B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +41,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B560371E1FAE37710049E847 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				B56037221FAE37A90049E847 /* Classes */,
+				B560371F1FAE377D0049E847 /* php */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		B560371F1FAE377D0049E847 /* php */ = {
+			isa = PBXGroup;
+			children = (
+				B56037201FAE379B0049E847 /* apiTIMFinance.php */,
+			);
+			path = php;
+			sourceTree = "<group>";
+		};
+		B56037221FAE37A90049E847 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B58FF2AC1FA0BF2D0052E01B /* ViewController.swift */,
+				B58FF2BC1FA0C1A90052E01B /* Citation.swift */,
+				B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		B58FF29E1FA0BF2D0052E01B = {
 			isa = PBXGroup;
 			children = (
@@ -58,14 +87,12 @@
 		B58FF2A91FA0BF2D0052E01B /* testerCodable */ = {
 			isa = PBXGroup;
 			children = (
+				B560371E1FAE37710049E847 /* Ressources */,
 				B58FF2AA1FA0BF2D0052E01B /* AppDelegate.swift */,
-				B58FF2AC1FA0BF2D0052E01B /* ViewController.swift */,
 				B58FF2AE1FA0BF2D0052E01B /* Main.storyboard */,
 				B58FF2B11FA0BF2D0052E01B /* Assets.xcassets */,
 				B58FF2B31FA0BF2D0052E01B /* LaunchScreen.storyboard */,
 				B58FF2B61FA0BF2D0052E01B /* Info.plist */,
-				B58FF2BC1FA0C1A90052E01B /* Citation.swift */,
-				B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */,
 			);
 			path = testerCodable;
 			sourceTree = "<group>";
@@ -132,6 +159,7 @@
 				B58FF2B51FA0BF2D0052E01B /* LaunchScreen.storyboard in Resources */,
 				B58FF2B21FA0BF2D0052E01B /* Assets.xcassets in Resources */,
 				B58FF2B01FA0BF2D0052E01B /* Main.storyboard in Resources */,
+				B56037211FAE379B0049E847 /* apiTIMFinance.php in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
