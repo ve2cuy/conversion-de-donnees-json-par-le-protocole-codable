@@ -37,7 +37,7 @@ import UIKit
 // Définition de la classe
 // ===========================================================
 class ViewController: UIViewController, UITableViewDataSource {
-
+    
     // Les connexions @IB
     @IBOutlet weak var tableViewDesActions: UITableView!
     
@@ -47,19 +47,19 @@ class ViewController: UIViewController, UITableViewDataSource {
     var donnéesFinanceYahoo:YahooFinance?
     
     var nbLecturesSurApiYahoo = 0
-
+    
     // Surcharge de certaines méthodes utiles de la super classe
     // =======================================================
     override func viewDidLoad() {
         super.viewDidLoad()
         obtenirDonnéesDeMesActions()
         Timer.scheduledTimer(timeInterval: 5,
-                            target: self,
-                            selector: #selector(self.obtenirDonnéesDeMesActions),
-                            userInfo: nil,
-                            repeats: true)
+                             target: self,
+                             selector: #selector(self.obtenirDonnéesDeMesActions),
+                             userInfo: nil,
+                             repeats: true)
     } // viewDidLoad()
-
+    
     // =======================================================
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -88,42 +88,42 @@ extension ViewController {
         // Former le début de l'URL
         // NOTE: L'API Yahoo finance n'est plus disponible depuis 2017.11.01
         // let uneURL = "http://query.yahooapis.com/v1/public/yql?q="
-            // Ajouter la requête SQL et remplacer les ' ' par %20
-            // + "select * from yahoo.finance.quotes where symbol in ('MSFT','YHOO','FB','INTC','HPQ','AAPL','AMD','COKE', 'MOMO', 'EGOV', 'PTOP', 'SINA', 'TWTR', 'YNDX', 'NTES', 'GDDY')".addingPercentEncoding(withAllowedCharacters: caracteresAConvertirEnFormatWeb)!
-            // Ajouter la fin de l'URL
-            // + "&env=store://datatables.org/alltableswithkeys&format=json"
-     
+        // Ajouter la requête SQL et remplacer les ' ' par %20
+        // + "select * from yahoo.finance.quotes where symbol in ('MSFT','YHOO','FB','INTC','HPQ','AAPL','AMD','COKE', 'MOMO', 'EGOV', 'PTOP', 'SINA', 'TWTR', 'YNDX', 'NTES', 'GDDY')".addingPercentEncoding(withAllowedCharacters: caracteresAConvertirEnFormatWeb)!
+        // Ajouter la fin de l'URL
+        // + "&env=store://datatables.org/alltableswithkeys&format=json"
+        
         // J'ai écrit un script php qui simule l'API YahooFinance
         let uneURL = "http://prof-tim.cstj.qc.ca/cours/xcode/sources/apiyahoo/api-yahoofinance.php?format=json"
-
+        
         //MARK:- Exécuter la commande seulement en mode DEBUG
         #if DEBUG
-         print(uneURL)
+            print(uneURL)
         #endif
         
         // Détacher l'opération d'interrogation de l'API finance
-        // DispatchQueue.main.async ( execute: {
+        DispatchQueue.main.async ( execute: {
             // Obtenir les données via le Web
-        if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
-            // Note: YahooFinance.self veut dire "de type YahooFinance"
-            do {
-                self.donnéesFinanceYahoo = try JSONDecoder().decode(YahooFinance.self, from: _data)
-                
-                //M-A-J du nombre de lectures vers l'API de Yahoo
-                self.nbLecturesSurApiYahoo += 1
-                self.uiNbLecturesSurApiYahoo?.text = String(self.nbLecturesSurApiYahoo)
-                print("\n\n\(NSDate()) - Lecture numéro \(self.nbLecturesSurApiYahoo)")
-                #if DEBUG
-                    self.afficherDonnéesFinanceYahoo()
-                #endif
-                //Réactualiser les données de tableViewDesActions
-                self.tableViewDesActions.reloadData()
-            }
-            catch {
-                print("Erreur de conversion JSON")
-            }
-        } // if let
-        // }) // DispatchQueue()
+            if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
+                // Note: YahooFinance.self veut dire "de type YahooFinance"
+                do {
+                    self.donnéesFinanceYahoo = try JSONDecoder().decode(YahooFinance.self, from: _data)
+                    
+                    //M-A-J du nombre de lectures vers l'API de Yahoo
+                    self.nbLecturesSurApiYahoo += 1
+                    self.uiNbLecturesSurApiYahoo?.text = String(self.nbLecturesSurApiYahoo)
+                    print("\n\n\(NSDate()) - Lecture numéro \(self.nbLecturesSurApiYahoo)")
+                    #if DEBUG
+                        self.afficherDonnéesFinanceYahoo()
+                    #endif
+                    //Réactualiser les données de tableViewDesActions
+                    self.tableViewDesActions.reloadData()
+                }
+                catch {
+                    print("Erreur de conversion JSON")
+                }
+            } // if let
+        }) // DispatchQueue()
     } // obtenirDonnéesJSON
     
     // =======================================================
@@ -151,17 +151,17 @@ extension ViewController {
         guard donnéesFinanceYahoo != nil else { return 0 }
         
         return (donnéesFinanceYahoo?.query.results.quote.count)!
-
+        
     } // numberOfRowsInSection
     
     
     // =======================================================
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cellule = tableView.dequeueReusableCell(withIdentifier: "modele", for: indexPath) as! CelluleAction
-
+        
         let indice = indexPath.row
-
+        
         // Obtenir l'action courante à partir du tableau des actions
         // en s'assurant que le tableau n'est pas 'nil' - précaution pour le dispatch
         if let actionCourante = donnéesFinanceYahoo?.query.results.quote[indice] {
