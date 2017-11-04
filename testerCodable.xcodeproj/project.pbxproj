@@ -16,6 +16,9 @@
 		B58FF2BF1FA0E0060052E01B /* YahooFinance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */; };
 		B58FF2C31FA122BE0052E01B /* CelluleAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2C21FA122BE0052E01B /* CelluleAction.swift */; };
 		B59E52231FA4F15C002C3812 /* portefeuille.json in Resources */ = {isa = PBXBuildFile; fileRef = B59E52221FA4F15C002C3812 /* portefeuille.json */; };
+		B5B31D4A1FAE285C005CB8A2 /* arrow_green.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B31D471FAE285C005CB8A2 /* arrow_green.png */; };
+		B5B31D4B1FAE285C005CB8A2 /* arrow_red.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B31D481FAE285C005CB8A2 /* arrow_red.png */; };
+		B5B31D4C1FAE285C005CB8A2 /* updown.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B31D491FAE285C005CB8A2 /* updown.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +33,9 @@
 		B58FF2BE1FA0E0060052E01B /* YahooFinance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YahooFinance.swift; sourceTree = "<group>"; };
 		B58FF2C21FA122BE0052E01B /* CelluleAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelluleAction.swift; sourceTree = "<group>"; };
 		B59E52221FA4F15C002C3812 /* portefeuille.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = portefeuille.json; sourceTree = "<group>"; };
+		B5B31D471FAE285C005CB8A2 /* arrow_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_green.png; sourceTree = "<group>"; };
+		B5B31D481FAE285C005CB8A2 /* arrow_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_red.png; sourceTree = "<group>"; };
+		B5B31D491FAE285C005CB8A2 /* updown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = updown.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,7 @@
 		B58FF2C01FA122880052E01B /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				B5B31D461FAE283A005CB8A2 /* Images */,
 				B59E52211FA4F111002C3812 /* Données */,
 				B58FF2C11FA122920052E01B /* Classes */,
 			);
@@ -99,6 +106,16 @@
 			);
 			name = "Données";
 			path = "Données";
+			sourceTree = "<group>";
+		};
+		B5B31D461FAE283A005CB8A2 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B5B31D471FAE285C005CB8A2 /* arrow_green.png */,
+				B5B31D481FAE285C005CB8A2 /* arrow_red.png */,
+				B5B31D491FAE285C005CB8A2 /* updown.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,8 +178,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B58FF2B51FA0BF2D0052E01B /* LaunchScreen.storyboard in Resources */,
+				B5B31D4B1FAE285C005CB8A2 /* arrow_red.png in Resources */,
 				B59E52231FA4F15C002C3812 /* portefeuille.json in Resources */,
 				B58FF2B21FA0BF2D0052E01B /* Assets.xcassets in Resources */,
+				B5B31D4C1FAE285C005CB8A2 /* updown.png in Resources */,
+				B5B31D4A1FAE285C005CB8A2 /* arrow_green.png in Resources */,
 				B58FF2B01FA0BF2D0052E01B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

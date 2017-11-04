@@ -26,7 +26,8 @@
 //    </dict>
 //
 //  ================================================================
-//  M-A-J
+//  M-A-J 2017.11.04 - https://chart.yahoo.com/table.csv?s=gsbd
+//                     https://www.alphavantage.co/support/#api-key
 //
 //  ================================================================
 
@@ -85,35 +86,44 @@ extension ViewController {
         // Liste des caractères à convertir
         let caracteresAConvertirEnFormatWeb = CharacterSet(charactersIn: " ").inverted
         // Former le début de l'URL
-        let uneURL = "http://query.yahooapis.com/v1/public/yql?q="
+        // NOTE: L'API Yahoo finance n'est plus disponible depuis 2017.11.01
+        // let uneURL = "http://query.yahooapis.com/v1/public/yql?q="
             // Ajouter la requête SQL et remplacer les ' ' par %20
-            + "select * from yahoo.finance.quotes where symbol in ('MSFT','YHOO','FB','INTC','HPQ','AAPL','AMD','COKE', 'MOMO', 'EGOV', 'PTOP', 'SINA', 'TWTR', 'YNDX', 'NTES', 'GDDY')".addingPercentEncoding(withAllowedCharacters: caracteresAConvertirEnFormatWeb)!
+            // + "select * from yahoo.finance.quotes where symbol in ('MSFT','YHOO','FB','INTC','HPQ','AAPL','AMD','COKE', 'MOMO', 'EGOV', 'PTOP', 'SINA', 'TWTR', 'YNDX', 'NTES', 'GDDY')".addingPercentEncoding(withAllowedCharacters: caracteresAConvertirEnFormatWeb)!
             // Ajouter la fin de l'URL
-            + "&env=store://datatables.org/alltableswithkeys&format=json"
+            // + "&env=store://datatables.org/alltableswithkeys&format=json"
      
+        // J'ai écrit un script php qui simule l'API YahooFinance
+        let uneURL = "http://prof-tim.cstj.qc.ca/cours/xcode/sources/apiyahoo/api-yahoofinance.php?format=json"
+
         //MARK:- Exécuter la commande seulement en mode DEBUG
         #if DEBUG
          print(uneURL)
         #endif
         
         // Détacher l'opération d'interrogation de l'API finance
-        DispatchQueue.main.async ( execute: {
+        // DispatchQueue.main.async ( execute: {
             // Obtenir les données via le Web
-            if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
-                // Note: YahooFinance.self veut dire "de type YahooFinance"
-                self.donnéesFinanceYahoo = try! JSONDecoder().decode(YahooFinance.self, from: _data)
-
+        if let _data = NSData(contentsOf: URL(string: uneURL)!) as Data? {
+            // Note: YahooFinance.self veut dire "de type YahooFinance"
+            do {
+                self.donnéesFinanceYahoo = try JSONDecoder().decode(YahooFinance.self, from: _data)
+                
                 //M-A-J du nombre de lectures vers l'API de Yahoo
                 self.nbLecturesSurApiYahoo += 1
                 self.uiNbLecturesSurApiYahoo?.text = String(self.nbLecturesSurApiYahoo)
                 print("\n\n\(NSDate()) - Lecture numéro \(self.nbLecturesSurApiYahoo)")
                 #if DEBUG
-                     self.afficherDonnéesFinanceYahoo()
+                    self.afficherDonnéesFinanceYahoo()
                 #endif
                 //Réactualiser les données de tableViewDesActions
                 self.tableViewDesActions.reloadData()
-            } // if let
-        }) // DispatchQueue()
+            }
+            catch {
+                print("Erreur de conversion JSON")
+            }
+        } // if let
+        // }) // DispatchQueue()
     } // obtenirDonnéesJSON
     
     // =======================================================
@@ -124,7 +134,7 @@ extension ViewController {
         
         if let _données = donnéesFinanceYahoo {
             for contenu in _données.query.results.quote  {
-                let prix = contenu.Ask ?? "Prix non disponible"
+                let prix = contenu.Ask ?? 0.0
                 let symbole = contenu.Symbol ?? "n/a"
                 print ("\t\(symbole): \(prix)")
             }
@@ -155,22 +165,34 @@ extension ViewController {
         // Obtenir l'action courante à partir du tableau des actions
         // en s'assurant que le tableau n'est pas 'nil' - précaution pour le dispatch
         if let actionCourante = donnéesFinanceYahoo?.query.results.quote[indice] {
-
-        // Renseigner la couleur de fond des cellules.
-        let couleurDeFond =  indice % 2 == 0 ? UIColor(named: "vertFonce") : UIColor(named: "bleuFonce")
-        cellule.backgroundColor = couleurDeFond
-        
-        // Renseigner les champs requis
-        let nom      = actionCourante.Name   ?? "n/a"
-        let symbole  = actionCourante.Symbol ?? "n/a"
-        let prix     = actionCourante.Ask    ?? "n/a"
-        cellule.actionCode.text = "\(symbole)"
-        cellule.actionTitre.text = "\(nom)"
-        cellule.actionValeur.text = "\(prix) $"
+            
+            // Renseigner la couleur de fond des cellules.
+            let couleurDeFond =  indice % 2 == 0 ? UIColor(named: "vertFonce") : UIColor(named: "bleuFonce")
+            cellule.backgroundColor = couleurDeFond
+            
+            // Renseigner les champs requis
+            let nom      = actionCourante.Name   ?? "n/a"
+            let symbole  = actionCourante.Symbol ?? "n/a"
+            let prix     = actionCourante.Ask    ?? 0
+            cellule.actionCode.text = "\(symbole)"
+            cellule.actionTitre.text = "\(nom)"
+            // cellule.actionValeur.textColor = UIColor.white
+            cellule.imageDirection?.image = UIImage(named: "updown")
+            let prixPrécédent = Float(cellule.actionValeur!.text!)!
+            if  prixPrécédent < prix {
+                // cellule.actionValeur.textColor = UIColor.green
+                cellule.imageDirection?.image = UIImage(named: "arrow_green")
+            }
+            if  prixPrécédent > prix {
+                // cellule.actionValeur.textColor = UIColor.red
+                cellule.imageDirection?.image = UIImage(named: "arrow_red")
+            }
+            
+            cellule.actionValeur.text = "\(String(format: "%.2f", prix))"
         } // if let
         
         return cellule
-
+        
     } // cellForRowAt indexPath
     
 }  // extension ViewController

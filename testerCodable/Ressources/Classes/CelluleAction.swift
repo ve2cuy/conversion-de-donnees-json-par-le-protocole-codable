@@ -10,6 +10,7 @@ import UIKit
 
 class CelluleAction: UITableViewCell {
 
+    @IBOutlet weak var imageDirection: UIImageView!
     @IBOutlet weak var actionValeur: UILabel!
     @IBOutlet weak var actionTitre: UILabel!
     @IBOutlet weak var actionCode: UILabel!
