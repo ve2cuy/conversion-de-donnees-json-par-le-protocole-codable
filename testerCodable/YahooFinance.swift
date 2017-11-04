@@ -25,5 +25,5 @@ struct Results:Codable {
 
 struct Quote:Codable {
     var Symbol: String
-    var Ask:    String?
+    var Ask:    Float?
 }

@@ -120,7 +120,7 @@ extension ViewController {
             print(données)
             
             for contenu in données.query.results.quote {
-                let prix = contenu.Ask ?? "Prix non disponible"
+                let prix = contenu.Ask ?? 0
                 print ("\(contenu.Symbol): \(prix)")
             }
         } // if let
