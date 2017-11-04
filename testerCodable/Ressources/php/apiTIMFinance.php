@@ -151,7 +151,6 @@
         // Tableau des actions
         $infoActions = array();
         
-        $indicePortefeuille = 0;
         foreach ($porteFeuille as $action) {
             $actionCourante = array();
             // Obtenir les champs du portefeuille : ASK, Name et Symbol
@@ -169,12 +168,10 @@
                             $direction = -1;
                         }
                         $x_value = $valeur *  ( 1 + (mt_rand(0, 10) / 100) * $direction);
-                        $porteFeuille[$indicePortefeuille]["Ask"] = $x_value;
                     }
                 }
                 
                 $actionCourante[$x] = $x_value;
-                $indicePortefeuille++;
             }
             // Ajouter les données bidons
             foreach($donneesBidons as $champ => $valeur) {
