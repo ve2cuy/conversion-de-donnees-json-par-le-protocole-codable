@@ -93,7 +93,7 @@ extension ViewController {
         // Ajouter la fin de l'URL
         // + "&env=store://datatables.org/alltableswithkeys&format=json"
         
-        // J'ai écrit un script php qui simule l'API YahooFinance
+        // Voici un script php qui simule l'API YahooFinance
         let uneURL = "http://prof-tim.cstj.qc.ca/cours/xcode/sources/apiyahoo/api-yahoofinance.php?format=json"
         
         //MARK:- Exécuter la commande seulement en mode DEBUG
