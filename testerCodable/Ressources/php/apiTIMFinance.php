@@ -30,7 +30,6 @@
      //                     Le prix de départ est pré-déterminé mais pourra varier
      //                     de +- 10% à chaque exécution du script
      //
-     //
      
      ------------------------------------------------------------------------------
      M-A-J:
@@ -70,6 +69,76 @@
     "Change"                  => "-0.23",
     "Commission"              => null,
     "Currency"                => "USD",
+    "ChangeRealtime"=>null,
+    "AfterHoursChangeRealtime"=>null,
+    "DividendShare"=>null,
+    "LastTradeDate"=>"10/31/2016",
+    "TradeDate"=>null,
+    "EarningsShare"=>"-5.11",
+    "ErrorIndicationreturnedforsymbolchangedinvalid"=>null,
+    "EPSEstimateCurrentYear"=>"0.58",
+    "EPSEstimateNextYear"=>"0.62",
+    "EPSEstimateNextQuarter"=>"0.14",
+    "DaysLow"=>null,
+    "DaysHigh"=>null,
+    "YearLow"=>"26.15",
+    "YearHigh"=>"44.92",
+    "HoldingsGainPercent"=>null,
+    "AnnualizedGain"=>null,
+    "HoldingsGain"=>null,
+    "HoldingsGainPercentRealtime"=>null,
+    "HoldingsGainRealtime"=>null,
+    "MoreInfo"=>null,
+    "OrderBookRealtime"=>null,
+    "MarketCapitalization"=>"39.78B",
+    "MarketCapRealtime"=>null,
+    "EBITDA"=>"90.38M",
+    "ChangeFromYearLow"=>"15.40",
+    "PercentChangeFromYearLow"=>"+58.89%",
+    "LastTradeRealtimeWithTime"=>null,
+    "ChangePercentRealtime"=>null,
+    "ChangeFromYearHigh"=>"-3.37",
+    "PercebtChangeFromYearHigh"=>"-7.50%",
+    "LastTradeWithTime"=>"4:00pm - 41.55",
+    "LastTradePriceOnly"=>"41.55",
+    "HighLimit"=>null,
+    "LowLimit"=>null,
+    "DaysRange"=>null,
+    "DaysRangeRealtime"=>null,
+    "FiftydayMovingAverage"=>"42.83",
+    "TwoHundreddayMovingAverage"=>"39.65",
+    "ChangeFromTwoHundreddayMovingAverage"=>"1.90",
+    "PercentChangeFromTwoHundreddayMovingAverage"=>"+4.78%",
+    "ChangeFromFiftydayMovingAverage"=>"-1.28",
+    "PercentChangeFromFiftydayMovingAverage"=>"-2.98%",
+    "Notes"=>null,
+    "Open"=>null,
+    "PreviousClose"=>"41.78",
+    "PricePaid"=>null,
+    "ChangeinPercent"=>"-0.55%",
+    "PriceSales"=>"8.04",
+    "PriceBook"=>"1.15",
+    "ExDividendDate"=>null,
+    "PERatio"=>null,
+    "DividendPayDate"=>null,
+    "PERatioRealtime"=>null,
+    "PEGRatio"=>"-124.19",
+    "PriceEPSEstimateCurrentYear"=>"71.64",
+    "PriceEPSEstimateNextYear"=>"67.02",
+    "SharesOwned"=>null,
+    "ShortRatio"=>"4.25",
+    "LastTradeTime"=>"4:00pm",
+    "TickerTrend"=>null,
+    "OneyrTargetPrice"=>"45.14",
+    "Volume"=>"10108",
+    "HoldingsValue"=>null,
+    "HoldingsValueRealtime"=>null,
+    "YearRange"=>"26.15 - 44.92",
+    "DaysValueChange"=>null,
+    "DaysValueChangeRealtime"=>null,
+    "StockExchange"=>"NMS",
+    "DividendYield"=>null,
+    "PercentChange"=>"-0.55%"
     ];
     
     // Début des traitements
@@ -123,7 +192,7 @@
                                    "site_web"        => 'http://prof-tim.cstj.qc.ca/cours/xcode/wp/index.php/contenu/',
                                    "adresse_IP"      => $_SERVER['REMOTE_ADDR'],
                                    "created"         => date(DATE_RFC2822),
-                                   "count"           => $nbResultats,
+                                   "count"           => count($infoActions),
                                    "lang"            => "fr-ca",
                                    "results"         => array("quote" => $infoActions)
                                    );
@@ -132,4 +201,3 @@
     } // if format == json
     
     ?>
-
