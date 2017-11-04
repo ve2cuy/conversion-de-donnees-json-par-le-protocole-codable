@@ -179,15 +179,17 @@ extension ViewController {
             // cellule.actionValeur.textColor = UIColor.white
             cellule.imageDirection?.image = nil
             let prixPrécédent = Float(cellule.actionValeur!.text!)!
-            if  prixPrécédent < prix {
-                // cellule.actionValeur.textColor = UIColor.green
-                cellule.imageDirection?.image = UIImage(named: "arrow_green")
-            }
-            if  prixPrécédent > prix {
-                // cellule.actionValeur.textColor = UIColor.red
-                cellule.imageDirection?.image = UIImage(named: "arrow_red")
-            }
             
+            if nbLecturesSurApiYahoo != 1 {
+                if  prixPrécédent < prix {
+                    // cellule.actionValeur.textColor = UIColor.green
+                    cellule.imageDirection?.image = UIImage(named: "arrow_green")
+                }
+                if  prixPrécédent > prix {
+                    // cellule.actionValeur.textColor = UIColor.red
+                    cellule.imageDirection?.image = UIImage(named: "arrow_red")
+                }
+            }
             cellule.actionValeur.text = "\(String(format: "%.2f", prix))"
         } // if let
         
