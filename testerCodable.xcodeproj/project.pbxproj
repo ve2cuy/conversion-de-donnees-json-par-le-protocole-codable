@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B560371D1FAE338B0049E847 /* apiTIMFinance.php in Resources */ = {isa = PBXBuildFile; fileRef = B560371C1FAE338B0049E847 /* apiTIMFinance.php */; };
 		B58FF2AB1FA0BF2D0052E01B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2AA1FA0BF2D0052E01B /* AppDelegate.swift */; };
 		B58FF2AD1FA0BF2D0052E01B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58FF2AC1FA0BF2D0052E01B /* ViewController.swift */; };
 		B58FF2B01FA0BF2D0052E01B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B58FF2AE1FA0BF2D0052E01B /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B560371C1FAE338B0049E847 /* apiTIMFinance.php */ = {isa = PBXFileReference; lastKnownFileType = text.script.php; path = apiTIMFinance.php; sourceTree = "<group>"; };
 		B58FF2A71FA0BF2D0052E01B /* testerCodable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testerCodable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B58FF2AA1FA0BF2D0052E01B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B58FF2AC1FA0BF2D0052E01B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B560371B1FAE33610049E847 /* php */ = {
+			isa = PBXGroup;
+			children = (
+				B560371C1FAE338B0049E847 /* apiTIMFinance.php */,
+			);
+			path = php;
+			sourceTree = "<group>";
+		};
 		B58FF29E1FA0BF2D0052E01B = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +92,7 @@
 		B58FF2C01FA122880052E01B /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				B560371B1FAE33610049E847 /* php */,
 				B5B31D461FAE283A005CB8A2 /* Images */,
 				B59E52211FA4F111002C3812 /* Données */,
 				B58FF2C11FA122920052E01B /* Classes */,
@@ -184,6 +195,7 @@
 				B5B31D4C1FAE285C005CB8A2 /* updown.png in Resources */,
 				B5B31D4A1FAE285C005CB8A2 /* arrow_green.png in Resources */,
 				B58FF2B01FA0BF2D0052E01B /* Main.storyboard in Resources */,
+				B560371D1FAE338B0049E847 /* apiTIMFinance.php in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
