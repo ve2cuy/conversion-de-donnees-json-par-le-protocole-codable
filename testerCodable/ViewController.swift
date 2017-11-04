@@ -177,7 +177,7 @@ extension ViewController {
             cellule.actionCode.text = "\(symbole)"
             cellule.actionTitre.text = "\(nom)"
             // cellule.actionValeur.textColor = UIColor.white
-            cellule.imageDirection?.image = UIImage(named: "updown")
+            cellule.imageDirection?.image = nil
             let prixPrécédent = Float(cellule.actionValeur!.text!)!
             if  prixPrécédent < prix {
                 // cellule.actionValeur.textColor = UIColor.green
