@@ -180,6 +180,7 @@ extension ViewController {
             cellule.imageDirection?.image = nil
             let prixPrécédent = Float(cellule.actionValeur!.text!)!
             
+            // Ne pas afficher les flèches de direction à la première lecture des données
             if nbLecturesSurApiYahoo != 1 {
                 if  prixPrécédent < prix {
                     // cellule.actionValeur.textColor = UIColor.green
