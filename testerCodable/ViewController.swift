@@ -92,12 +92,17 @@ extension ViewController {
         // Liste des car à convertir
         let caracteresAConvertirEnFormatWeb = CharacterSet(charactersIn: " ").inverted
         // Former le début de l'URL
-        let uneURL = "http://query.yahooapis.com/v1/public/yql?q="
+        
+        _ = "http://query.yahooapis.com/v1/public/yql?q="
             // Ajouter la requête SQL et remplacer les ' ' par %20
             + "select * from yahoo.finance.quotes where symbol in ('MSFT','YHOO','FB','INTC','HPQ','AAPL','AMD','COKE')".addingPercentEncoding(withAllowedCharacters: caracteresAConvertirEnFormatWeb)!
             // Ajouter la fin de l'URL
             + "&env=store://datatables.org/alltableswithkeys&format=json"
-     
+        
+        // Voici un script php qui simule l'API YahooFinance
+        let uneURL = "http://prof-tim.cstj.qc.ca/cours/xcode/sources/apiyahoo/api-yahoofinance.php?format=json"
+        
+
         //MARK:- Exécuter la commande seulement en mode DEBUG
         #if DEBUG
          print(uneURL)
@@ -130,7 +135,7 @@ extension ViewController {
         
         if let _données = donnéesFinanceYahoo {
             for contenu in _données.query.results.quote  {
-                let prix = contenu.Ask ?? "Prix non disponible"
+                let prix = contenu.Ask ?? 0
                 print ("\t\(contenu.Symbol): \(prix)")
             }
         }
